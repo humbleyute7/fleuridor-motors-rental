@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  input, textarea, select {
+    -webkit-user-select: text;
+    user-select: text;
+    font-size: 16px;
+  }
+
+  @supports (padding: env(safe-area-inset-top)) {
+    .safe-area-top {
+      padding-top: env(safe-area-inset-top);
+    }
+    .safe-area-bottom {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .safe-area-left {
+      padding-left: env(safe-area-inset-left);
+    }
+    .safe-area-right {
+      padding-right: env(safe-area-inset-right);
+    }
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .touch-pan-y {
+    touch-action: pan-y;
+  }
+
+  .touch-none {
+    touch-action: none;
+  }
+}
+
+@layer components {
+  .tablet-input {
+    @apply w-full bg-gray-800 text-white px-4 py-3 md:py-4 rounded-lg md:rounded-xl border border-gray-700 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 outline-none transition-all text-base md:text-lg;
+  }
+
+  .tablet-button {
+    @apply px-6 py-3 md:px-8 md:py-4 rounded-lg md:rounded-xl font-medium transition-all touch-manipulation text-base md:text-lg;
+  }
+
+  .tablet-card {
+    @apply bg-gray-900 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 border border-gray-800;
+  }
+
+  .tablet-heading {
+    @apply text-xl md:text-2xl lg:text-3xl font-bold text-white;
+  }
+
+  .tablet-label {
+    @apply block text-sm md:text-base font-medium text-gray-300 mb-2 md:mb-3;
+  }
+}
+
+@media (min-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  input[type="datetime-local"],
+  textarea,
+  select {
+    font-size: 18px;
+    padding: 14px 18px;
+  }
+
+  button {
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  input[type="datetime-local"],
+  textarea,
+  select {
+    font-size: 18px;
+    padding: 16px 20px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  button:active {
+    transform: scale(0.98);
+  }
+
+  .hover\:bg-gray-600:active {
+    background-color: rgb(75 85 99);
+  }
+
+  .hover\:bg-red-700:active {
+    background-color: rgb(185 28 28);
+  }
+
+  .hover\:bg-blue-600:active {
+    background-color: rgb(37 99 235);
+  }
+}
+
+.signature-canvas {
+  touch-action: none;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .signature-canvas {
+    min-height: 250px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .signature-canvas {
+    min-height: 300px;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  #print-contract,
+  #print-contract * {
+    visibility: visible !important;
+  }
+
+  #print-contract {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: white !important;
+  }
+
+  header, footer, nav,
+  .no-print {
+    display: none !important;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
+}
